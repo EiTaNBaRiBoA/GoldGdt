@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3 uid="uid://byo3pgqb3h8p1"]
+
+[ext_resource type="Script" path="res://scripts/GoldGdtMovement.gd" id="1_7vdsq"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="2_66q0h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bahoa"]
+radius = 0.407
+height = 1.829
+
+[node name="Player" type="Node3D"]
+
+[node name="Pawn" type="CharacterBody3D" parent="." node_paths=PackedStringArray("crouchtraces", "player_hull", "head", "vision", "camera", "speedometer", "info")]
+top_level = true
+collision_layer = 2
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_snap_length = 1.0
+platform_on_leave = 1
+safe_margin = 0.002
+script = ExtResource("1_7vdsq")
+crouchtraces = [NodePath("Traces/Trace1"), NodePath("Traces/Trace2"), NodePath("Traces/Trace3"), NodePath("Traces/Trace4")]
+player_hull = NodePath("BoundingBox")
+head = NodePath("../Smoothing/Head")
+vision = NodePath("../Smoothing/Head/Vision")
+camera = NodePath("../Smoothing/Head/Vision/Camera3D")
+speedometer = NodePath("../HUD/Speedometer")
+info = NodePath("../HUD/Player Info")
+
+[node name="BoundingBox" type="CollisionShape3D" parent="Pawn"]
+shape = SubResource("CapsuleShape3D_bahoa")
+
+[node name="Traces" type="Node3D" parent="Pawn"]
+
+[node name="Trace1" type="RayCast3D" parent="Pawn/Traces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39, 0, 0)
+target_position = Vector3(0, 1.407, 0)
+hit_from_inside = true
+
+[node name="Trace2" type="RayCast3D" parent="Pawn/Traces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39, 0, 0)
+target_position = Vector3(0, 1.407, 0)
+hit_from_inside = true
+
+[node name="Trace3" type="RayCast3D" parent="Pawn/Traces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39)
+target_position = Vector3(0, 1.407, 0)
+hit_from_inside = true
+
+[node name="Trace4" type="RayCast3D" parent="Pawn/Traces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39)
+target_position = Vector3(0, 1.407, 0)
+hit_from_inside = true
+
+[node name="Smoothing" type="Node3D" parent="."]
+top_level = true
+script = ExtResource("2_66q0h")
+target = NodePath("../Pawn")
+flags = 11
+
+[node name="Head" type="Node3D" parent="Smoothing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
+
+[node name="Vision" type="Node3D" parent="Smoothing/Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Smoothing/Head/Vision"]
+fov = 95.0
+near = 0.001
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speedometer" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -84.0
+offset_right = 62.5
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "999 in/s (goldsrc)
+999 m/s (godot)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Info" type="Label" parent="HUD"]
+layout_mode = 1
+offset_right = 125.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "pos (meters): (x, y, z)
+vel (meters): (x, y, z)
+grounded: true/false"

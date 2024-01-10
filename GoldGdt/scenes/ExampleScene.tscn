@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdung7ygso07p"]
+
+[ext_resource type="Texture2D" uid="uid://bfv44vkhs6u2n" path="res://textures/papier.png" id="1_yejv4"]
+[ext_resource type="PackedScene" uid="uid://byo3pgqb3h8p1" path="res://Player.tscn" id="2_gb6qo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f5n3"]
+albedo_color = Color(0.180392, 0.180392, 0.180392, 1)
+albedo_texture = ExtResource("1_yejv4")
+metallic_specular = 0.0
+roughness = 0.0
+clearcoat_roughness = 0.0
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 76.1093
+texture_filter = 0
+grow_amount = -4.533
+point_size = 128.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3gwu"]
+
+[sub_resource type="Sky" id="Sky_op1p1"]
+sky_material = SubResource("ProceduralSkyMaterial_m3gwu")
+
+[sub_resource type="Environment" id="Environment_5y34e"]
+background_mode = 2
+sky = SubResource("Sky_op1p1")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ssao_enabled = true
+ssao_radius = 2.25
+ssao_intensity = 8.47
+ssao_power = 0.349888
+ssao_horizon = 0.0
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.0
+glow_bloom = 0.22
+fog_light_color = Color(0.721569, 0.827451, 0.964706, 1)
+fog_light_energy = 0.3
+fog_sky_affect = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1f5n3")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020256, 0, 22.0494)
+size = Vector3(43.9074, 0.329678, 121.171)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.875751, 0.482763, 0, -0.482763, 0.875751, 0, 0, 0, 2.31346, -4.23447, 0, 0)
+size = Vector3(12.1389, 0.329678, 10.6485)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.5, -0.866026, 0, 0.866026, 0.5, 0, 0, 0, 2.31346, -15.753, 1.68278, 32.5027)
+size = Vector3(16.2794, 0.329678, 15.8888)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.31346, -15.538, 2.909, 0)
+size = Vector3(12.1389, 0.329678, 10.6485)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.31346, -15.538, 0.342768, -27.4961)
+size = Vector3(3, 2.7168, 3)
+
+[node name="Player" parent="." instance=ExtResource("2_gb6qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63077, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5y34e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9966, 0.0551868, -0.0611773, 0, 0.742526, 0.669818, 0.0823908, -0.66754, 0.740001, 0, 7.31628, 0)
+shadow_enabled = true
+directional_shadow_pancake_size = 0.0
