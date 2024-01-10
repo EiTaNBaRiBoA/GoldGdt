@@ -1,24 +1,36 @@
-# GoldGdt Version 1
+# GoldGdt
+![logo256](https://github.com/ratmarrow/GoldGdt/assets/155324574/2cec9935-1d27-4dc9-b59e-a55143a68b92)
+
 GoldGdt intends to be an accurate port of the GoldSrc movement code into Godot 4.
 
 This is meant to act as a foundation to build a project on, as it comes pre-bundled with mapped inputs and the like.
 
-## How to use
+## How to setup
 
-After extracting the files you will want to open the .project file through Godot, from there you can change names and begin working on your project!
+When downloading the foundation, you can simply open it using the Godot Launcher, and immediately start tinkering with it.
+
+## Things to note
+
+### Movement Physics
+
+The input and physics in the GoldGdtMovement.gd script are handled in `_physics_process()` to ensure that the movement feels consistent regardless of framerate, which was a shortcoming of games like Half-Life 1.
+
+
+The default physics update rate is 100 frames-per-second in order to make the physics behave like Half-Life 1 speedruns [as explained here](https://wiki.sourceruns.org/wiki/FPS_Effects), which in turn makes bunnyhopping faster. This can be changed by going into `Project Settings>Physics>Common`
+
+![physics settings](https://github.com/ratmarrow/GoldGdt/assets/155324574/a0425b64-53ac-41d9-a086-19733971de95)
+
 
 ## Plans
 
-GoldGdt is not in a feature complete state as of writing, right now what is missing is:
-- Water Movement
-- Ladder Movement
-- Crouch Animation
-
-And, in broad strokes, what is contained is:
-- Quake/GoldSrc Acceleration
-- Ducking
-- Jumping
-- Surfing
+GoldGdt is not in a feature complete state as of writing, right now what's ported is:
+- [x] Ground Movement
+- [x] Air Movement
+- [ ] Water Movement
+- [ ] Ladder Movement
+- [x] Jumping
+- [x] Ducking
+- [x] Surfing
 
 If you have any issues or suggestions, please relay those to me!
 
