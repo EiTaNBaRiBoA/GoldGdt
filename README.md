@@ -22,4 +22,4 @@ And, in broad strokes, what is contained is:
 
 If you have any issues or suggestions, please relay those to me!
 
-Once this project is considered fully feature complete, I will work towards turning GoldGdt into a plugin for increased ease of use!
+Once this project is considered fully feature complete, I may work towards turning GoldGdt into a plugin for increased ease of use!
