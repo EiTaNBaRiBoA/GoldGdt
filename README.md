@@ -29,8 +29,10 @@ GoldGdt is not in a feature complete state as of writing, right now what's porte
 - [ ] Water Movement
 - [ ] Ladder Movement
 - [x] Jumping
-- [x] Ducking
+- [x] Ducking (Halfway)
 - [x] Surfing
+
+Ducking is the only feature I would call "unfinished" because it's missing the transition logic, which makes "ducktapping" impossible.
 
 If you have any issues or suggestions, please relay those to me!
 
