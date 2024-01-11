@@ -169,6 +169,9 @@ func _handle_collision() -> void:
 	if collided and not get_floor_normal():
 		var slide_direction := get_last_slide_collision().get_normal()
 		velocity = velocity.slide(slide_direction)
+		floor_block_on_wall = false 
+	else: # Hacky McHack to restore wallstrafing behaviour which doesn't work unless 'floor_block_on_wall' is true
+		floor_block_on_wall = true
 
 # Gathers player input for use in movement calculations
 func _handle_input() -> void:
